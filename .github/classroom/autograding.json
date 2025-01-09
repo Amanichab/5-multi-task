@@ -1,39 +1,36 @@
 {
+  "setup": "python -m pip install --upgrade pip && pip install -r requirements.txt",
+  "test_command": "pytest MTBO_assignment_test.py -v",
   "tests": [
     {
-      "name": "1. Task A - Optimization Parameters Setup",
-      "setup": "pip install -r requirements.txt",
-      "run": "pytest MTBO_assignment_test.py::test_task_a -v",
+      "name": "1. CVD Parameter Setup",
+      "test": "test_parameter_setup",
       "points": 2,
-      "timeout": 10
+      "timeout": 20
     },
     {
-      "name": "2. Task B - Optimization Campaign",
-      "setup": "pip install -r requirements.txt",
-      "run": "pytest MTBO_assignment_test.py::test_task_b -v", 
-      "points": 2,
-      "timeout": 10
+      "name": "2. Alternating Optimization",
+      "test": "test_optimization_campaign",
+      "points": 3,
+      "timeout": 300
     },
     {
-      "name": "3. Task C - Optimal Parameters Report",
-      "setup": "pip install -r requirements.txt",
-      "run": "pytest MTBO_assignment_test.py::test_task_c -v",
+      "name": "3. Optimal Parameters Analysis",
+      "test": "test_optimal_parameters",
       "points": 2,
-      "timeout": 10
+      "timeout": 20
     },
     {
-      "name": "4. Task D - Reactor Comparison",
-      "setup": "pip install -r requirements.txt",
-      "run": "pytest MTBO_assignment_test.py::test_task_d -v",
-      "points": 2,
-      "timeout": 10
+      "name": "4. Reactor Performance Comparison",
+      "test": "test_reactor_comparison",
+      "points": 1,
+      "timeout": 20
     },
     {
-      "name": "5. Task E - Multi-task Model Advantage",
-      "setup": "pip install -r requirements.txt",
-      "run": "pytest MTBO_assignment_test.py::test_task_e -v",
+      "name": "5. Multi-task Model Evaluation",
+      "test": "test_multitask_advantage",
       "points": 2,
-      "timeout": 10
+      "timeout": 20
     }
   ]
 }

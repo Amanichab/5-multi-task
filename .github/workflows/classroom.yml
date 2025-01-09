@@ -1,4 +1,4 @@
-name: Autograding Tests
+name: CVD Multi-Task Optimization Tests
 'on':
   - push
   - workflow_dispatch
@@ -13,17 +13,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Multi-Task BO test
-        id: multi-task-bo-test
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: CVD Multi-Task Optimization Test
+        id: cvd-mtbo-test
         uses: classroom-resources/autograding-python-grader@v1
         with:
-          timeout: 10
+          timeout: 600
           max-score: 10
-          setup-command: pip install -r requirements.txt
+          setup-command: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
           test-command: pytest MTBO_assignment_test.py -v
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          MULTI-TASK-BO-TEST_RESULTS: "${{steps.multi-task-bo-test.outputs.result}}"
+          CVD_MTBO_TEST_RESULTS: "${{steps.cvd-mtbo-test.outputs.result}}"
         with:
-          runners: multi-task-bo-test
+          runners: cvd-mtbo-test
