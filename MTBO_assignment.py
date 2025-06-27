@@ -19,8 +19,8 @@ set_seeds()  # setting the random seed for reproducibility
 
 import numpy as np
 from ax.core.observation import ObservationFeatures
-from ax.modelbridge.generation_strategy import GenerationStep, GenerationStrategy
-from ax.modelbridge.registry import Models
+from ax.modelbridge.factory import Generators
+from ax.generation_strategy.generation_strategy import GenerationStep, GenerationStrategy
 from ax.modelbridge.transforms.task_encode import TaskEncode
 from ax.modelbridge.transforms.unit_x import UnitX
 from ax.service.ax_client import AxClient, ObjectiveProperties
@@ -31,12 +31,12 @@ gs = GenerationStrategy(
     name="MultiTaskOp",
     steps=[
         GenerationStep(
-            model=Models.SOBOL,
+            model=Generators.SOBOL,
             num_trials=10,
             model_kwargs={"deduplicate": True, "transforms": transforms},
         ),
         GenerationStep(
-            model=Models.BOTORCH_MODULAR,
+            model=Generators.BOTORCH_MODULAR,
             num_trials=-1,
             model_kwargs={"transforms": transforms},
         ),
@@ -83,11 +83,11 @@ gs = GenerationStrategy(
     name="MultiTaskOp",
     steps=[
         GenerationStep(
-            model=Models.SOBOL,
+            model=Generators.SOBOL,
             num_trials=10,
         ),
         GenerationStep(
-            model=Models.BOTORCH_MODULAR,
+            model=Generators.BOTORCH_MODULAR,
             num_trials=-1,
         ),
     ],
