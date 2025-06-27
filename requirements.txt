@@ -1,4 +1,4 @@
 -e . # package from this repo
-ax-platform
+ax-platform<1
 matplotlib
 pytest
